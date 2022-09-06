@@ -1,0 +1,10 @@
+:root{
+    --black: rgb(0,0,0);
+    --dark-gray: rgb(48,48,48);
+    --white: rgb(255,255,255);
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+
