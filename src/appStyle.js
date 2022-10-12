@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import daytime from "./assets/images/mobile/bg-image-daytime.jpg";
+import {colors} from "./assets/global/colors/colors";
 
 export const AppStyle = styled.div`
   background-image: url(${daytime});
@@ -7,8 +8,8 @@ export const AppStyle = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
-  
-  :after{
+
+  :after {
     content: '';
     width: 100%;
     height: 100%;
@@ -16,7 +17,7 @@ export const AppStyle = styled.div`
     opacity: .3;
     top: 0;
     left: 0;
-    background-color: black;
+    background-color: ${colors.black};
   }
 
 `

@@ -4,15 +4,13 @@ import {Header} from "./assets/components/header/header";
 import {AppStyle} from "./appStyle";
 
 function App() {
-  return (
-      <div className="App">
-        <AppStyle class="first-container-day">
-          <Header/>
-          <Main/>
-          <Footer/>
+    return (
+        <AppStyle>
+            <Header/>
+            <Main/>
+            <Footer/>
         </AppStyle>
-      </div>
-  );
+    );
 }
 
 export default App;
