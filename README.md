@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# APIS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## World Time API
 
-## Available Scripts
+- [World Time API](http://worldtimeapi.org/) set the time based on the visitor's IP adress. This API will also be used for additional data, like the day of the year shown in the expanded state.
 
-In the project directory, you can run:
+Usage Examples:
 
-### `npm start`
+**_Request a list of valid timezones (as JSON):_**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+curl "http://worldtimeapi.org/api/timezone"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**_Request a list of valid locations for an area (as JSON):_**
 
-### `npm test`
+http://worldtimeapi.org/api/timezone/:area
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+curl "http://worldtimeapi.org/api/timezone/Europe"
 
-### `npm run build`
+**_Request the current time for a timezone with region:_**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+````javascript
+urlBase: "http://worldtimeapi.org/api/timezone/:area/:location[/:region]"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+curl: "http://worldtimeapi.org/api/timezone/America/Argentina/Salta"
+````
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```diff
+- texto em vermelho
++ texto em verde
+! texto em laranja
+# texto em cinza
+@@ texto em roxo (e negrito)@@
+```
 
-### `npm run eject`
+> By default, API responses are in JSON format nohighlight.
+> Adding a suffix of .txt to any API URL will return a plain-text
+> response which may be easier to parse on some systems:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`curl:"http://worldtimeapi.org/api/timezone/Europe/London.txt"`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**_Request the current time based on your public IP (as JSON):_**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`curl: "http://worldtimeapi.org/api/ip"`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**_Request the current time for a specific IP (in plain text):_**
 
-## Learn More
+````javascript
+urlBase: http://worldtimeapi.org/api/ip/:ipv4
+curl: "http://worldtimeapi.org/api/ip/8.8.8.8.txt"
+````
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## IP Geolocation API
 
-### Code Splitting
+- [IP Geolocation API](https://freegeoip.app/) set the city and country underneath the time.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Authentication methods:
 
-### Analyzing the Bundle Size
+**__To authorize, you can use the following ways:__**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### GET query parameter:
 
-### Making a Progressive Web App
+You can pass your API key along with every request by adding it as a query parameter apikey
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+> **Warning**:
+>
+> **Note:**
+>
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This method could expose your API key in access logs and such. Sending the API key via a header parameter as specified below circumvents this problem.
 
-### Deployment
+curl: "https://api.ipbase.com/v2/info?ip=1.1.1.1&apikey=YOUR-APIKEY"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**HTTP Header: you can set a request header with the name apikey**
 
-### `npm run build` fails to minify
+````javascript
+axios.get(("https://api.ipbase.com/v2/info?ip=1.1.1.1"), {
+    headers: {
+            "apikey": "YOUR-APIKEY"
+          }}).then(response => {
+        setExample(response.data)
+})
+        .catch(error => console.log(error))
+````
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Error Codes:
+
+### 401
+
+Invalid authentication credentials
+
+### 403
+
+You are not allowed to use this endpoint, please upgrade your plan (opens new window).
+
+### 404
+
+A requested endpoint does not exist
+
+### 422
+
+Validation error, please check the list of validation errors: here
+
+### 429
+
+You have hit your rate limit or your monthly limit. For more requests please upgrade your plan (opens new window).
+
+### 500
+
+Internal Server Error - let us know: support@ipbase.com
+
+## Validation errors
+
+### Invalid Ip
+
+The ip must be a valid IP address
+
+### Missing ip
+
+The ip parameter is required
+
+### Invalid language
+
+The selected language is invalid
+Should be an ISO Alpha 2 Language Code for localising the ip data
+
+**Rate limit and quotas**
+
+You can use a certain number of requests per month, defined by your plan. Once you go over this quota, the API returns
+a `429` HTTP status code, and you either need to upgrade your plan or wait until the end of the month.
+
+We enforce a minute rate limit for specific plans. If you exceed this, the API returns a `429` HTTP status code. You then have to wait until the end of the minute to make more requests. Not every request counts
+
+Not every request counts
+
+Only successful calls count against your quota. Any error on our side or validation errors (e.g., wrong parameter) will NOT count against your quota or rate limit.
+
+**Response Headers**
+
+We attach specific headers to tell you your current monthly/minute quota and how much you have remaining in the period.
+
+```bash
+X-RateLimit-Limit-Quota-Minute: 10
+
+X-RateLimit-Limit-Quota-Month: 300
+
+X-RateLimit-Remaining-Quota-Minute: 5
+
+X-RateLimit-Remaining-Quota-Month: 199
+```
+
+- [Programming Quotes API](https://programming-quotes-api.herokuapp.com/) to generate random programming quotes.
+  - If the Programming Quotes API doesn't work, [here's a good alternative quote API](https://github.com/lukePeavey/quotable) you can use instead. It's not programming specific, but it will do the trick.
