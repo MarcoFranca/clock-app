@@ -13,10 +13,10 @@ This is a project where I built a clock app that changes images according to tim
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Links](#links)
-- [My process](#my-process)
+  - [Links](#:link:-links)
+- [My process](#:memo:-:pencil:-my-process)
   - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
+  - [What I learned](#:man_technologist:-what-i-learned)
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [APIS](#apis)
@@ -28,7 +28,8 @@ This is a project where I built a clock app that changes images according to tim
 
 ## Overview
 
-### 🏆 The challenge
+
+### The challenge
 
 #### Users should be able to:
 
@@ -63,7 +64,7 @@ This is a project where I built a clock app that changes images according to tim
 - Solution URL: [https://github.com/MarcoFranca/clock-app](https://github.com/MarcoFranca/clock-app)
 - Live Site URL: [https://clock-app-iota-six.vercel.app/](https://clock-app-iota-six.vercel.app/)
 
-## :memo::pencil: My process
+## :memo: :pencil: My process
 
 ### :hammer_and_wrench: Built with
 
