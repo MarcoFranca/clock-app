@@ -14,6 +14,7 @@ export const AppStyle = styled.div`
   background-position: center;
   width: 100vw;
   height: 100vh;  
+  color: ${colors.white};
   
   :after {
     content: '';
