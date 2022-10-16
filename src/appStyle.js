@@ -8,31 +8,21 @@ import dayTime from "./assets/images/mobile/bg-image-daytime.jpg";
 import {colors} from "./assets/global/colors/colors";
 
 export const AppStyle = styled.div`
-  background-image: ${props => (props.backGround ? `url(${dayTime})` : `url(${nightTime})`)};
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), ${props => (props.backGround ? `url(${dayTime})` : `url(${nightTime})`)} no-repeat center;
   width: 100vw;
-  height: 100vh;  
+  height: 100vh;
   color: ${colors.white};
-  
-  :after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    opacity: .3;
-    top: 0;
-    left: 0;
-    background-color: ${colors.black};
+  background-size: cover;
+
+  @media screen and (min-width: 768px) {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), ${props => (props.backGround ? `url(${dayTimeTab})` : `url(${nightTimeTab})`)} no-repeat center;
+    background-size: cover;
   }
 
-  @media screen and (min-width: 768px){
-    background-image: ${props => (props.backGround ? `url(${dayTimeTab})` : `url(${nightTimeTab})`)};
-  }
-  
-  @media screen and (min-width: 1024px){
-    background-image: ${props => (props.backGround ? `url(${dayTimeDesk})` : `url(${nightTimeDesk})`)};
+  @media screen and (min-width: 1024px) {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), ${props => (props.backGround ? `url(${dayTimeDesk})` : `url(${nightTimeDesk})`)} no-repeat center;
+    background-size: cover;
   }
 
 `
