@@ -28,7 +28,7 @@ This is a project where I built a clock app that changes images according to tim
 
 ## Overview
 
-### :dart: The challenge <a name="the-clallenge"></a>
+### :dart: The challenge <a name="the-challenge"></a>
 
 #### Users should be able to:
 
@@ -83,7 +83,7 @@ This is a project where I built a clock app that changes images according to tim
 
 [:arrow_up:](#table-of-contents)
 
-## Continued development :infinity: <a name="continued-development"></a>
+## :infinity: Continued development <a name="continued-development"></a>
 
 
 
