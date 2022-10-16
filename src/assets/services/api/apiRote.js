@@ -10,14 +10,15 @@ export function getIp() {
     }).catch(error => console.log(error))
 }
 
-export function getCotes() {
+export function getQuotes(setState) {
     axios.get(api.programmingCotes.curlRandomQuotes, {
         headers: {
             "accept": "application/json"
         }})
         .then(response => {
-        console.log(response)
-    }).catch(error => console.log(error))
+            setState(response.data)
+            console.log(response.data)
+        }).catch(error => console.log(error))
 }
 
 export function getGeolocation() {
