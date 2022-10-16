@@ -5,7 +5,8 @@ import {AppStyle} from "./appStyle";
 
 function App() {
     return (
-        <AppStyle>
+        <AppStyle
+            backGround={false}>
             <Header/>
             <Main/>
             <Footer/>

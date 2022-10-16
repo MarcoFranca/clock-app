@@ -1,14 +1,20 @@
 import styled from "styled-components";
-import daytime from "./assets/images/mobile/bg-image-daytime.jpg";
+import nightTimeDesk from "./assets/images/desktop/bg-image-nighttime.jpg";
+import nightTimeTab from "./assets/images/tablet/bg-image-nighttime.jpg";
+import nightTime from "./assets/images/mobile/bg-image-nighttime.jpg";
+import dayTimeDesk from "./assets/images/desktop/bg-image-daytime.jpg";
+import dayTimeTab from "./assets/images/tablet/bg-image-daytime.jpg";
+import dayTime from "./assets/images/mobile/bg-image-daytime.jpg";
 import {colors} from "./assets/global/colors/colors";
 
 export const AppStyle = styled.div`
-  background-image: url(${daytime});
+  background-image: ${props => (props.backGround ? `url(${dayTime})` : `url(${nightTime})`)};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
-
+  width: 100vw;
+  height: 100vh;  
+  
   :after {
     content: '';
     width: 100%;
@@ -18,6 +24,14 @@ export const AppStyle = styled.div`
     top: 0;
     left: 0;
     background-color: ${colors.black};
+  }
+
+  @media screen and (min-width: 768px){
+    background-image: ${props => (props.backGround ? `url(${dayTimeTab})` : `url(${nightTimeTab})`)};
+  }
+  
+  @media screen and (min-width: 1024px){
+    background-image: ${props => (props.backGround ? `url(${dayTimeDesk})` : `url(${nightTimeDesk})`)};
   }
 
 `
