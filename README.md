@@ -63,13 +63,17 @@ This is a project where I built a clock app that changes images according to tim
 
 #### :man_technologist:Tecnologies:
 
-[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/) [![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/) [![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/) 
+
+[![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/) 
+
+[![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 #### :books: Librarys
 
 * [![React](https://img.shields.io/badge/-Date%20FNS-blue)](https://date-fns.org/)
 
-### :desktop_computer: Apis:
+#### :desktop_computer: Apis:
 
 * [![React](https://img.shields.io/badge/API-IP%20Geolocation-yellow)](https://programming-quotes-api.herokuapp.com/)
 * [![React](https://img.shields.io/badge/API-Programming%20Quotes-yellow)](https://programming-quotes-api.herokuapp.com/)
