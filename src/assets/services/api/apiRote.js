@@ -1,8 +1,17 @@
 import axios from "axios";
 import {api} from "./apiConfig";
 
-export function getIp() {
-    axios.get(api.ipGeolocation.curl, {
+export const getIp = (setState) => {
+    axios.get(api.geolocationDb.curl)
+        .then(res => {
+            console.log(res.data)
+            setState(res.data.IPv4)
+        })
+        .catch(error => console.log(error))
+}
+
+export function getGeolocation(ip) {
+    axios.get(api.ipGeolocation.curl  + ip, {
         headers: {
             'apikey': api.ipGeolocation.key
         }}).then(response => {
@@ -21,12 +30,9 @@ export function getQuotes(setState) {
         }).catch(error => console.log(error))
 }
 
-export function getGeolocation() {
-    axios.get(api.ipGeolocation.url, {
-        headers: {
-            'apikey': api.ipGeolocation.key
-        }}).then(response => {
-        console.log(response)
+export function getWorldTime(ip) {
+    axios.get(api.worldTime.curlIp + ip).then(response => {
+        console.log(response.data)
     }).catch(error => console.log(error))
 }
 
