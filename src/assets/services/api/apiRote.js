@@ -5,7 +5,7 @@ export const getIp = (setState) => {
     axios.get(api.geolocationDb.curl)
         .then(res => {
             console.log(res.data)
-            setState(res.data.IPv4)
+            setState(res.data)
         })
         .catch(error => console.log(error))
 }
@@ -30,8 +30,9 @@ export function getQuotes(setState) {
         }).catch(error => console.log(error))
 }
 
-export function getWorldTime(ip) {
+export function getWorldTime(ip, setState) {
     axios.get(api.worldTime.curlIp + ip).then(response => {
+        setState(response.data)
         console.log(response.data)
     }).catch(error => console.log(error))
 }
