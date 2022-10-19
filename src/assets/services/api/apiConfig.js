@@ -1,7 +1,7 @@
 export const api = {
     worldTime: {
-        curl:"http://worldtimeapi.org/api/timezone",
-        curlIp: "http://worldtimeapi.org/api/ip/",
+        curl:"https://worldtimeapi.org/api/timezone",
+        curlIp: "https://worldtimeapi.org/api/ip/",
     },
     geolocationDb:{
       curl: "https://geolocation-db.com/json/ "
