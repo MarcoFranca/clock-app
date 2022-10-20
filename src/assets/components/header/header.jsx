@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {HeaderContainer} from "./headerStyle";
+import {HeaderContainer, Image, Quotes} from "./headerStyle";
 import {getQuotes} from "../../services/api/apiRote";
 import refreshImg from "../../images/desktop/icon-refresh.svg"
+import {useSelector} from "react-redux";
 
 export function Header() {
     const [cote, setCote] = useState()
+    const isHidding = useSelector((state) => state.date.isHidden)
 
     useEffect(()=>{
         getQuotes(setCote)
@@ -13,17 +15,17 @@ export function Header() {
 
     return(
         !cote? 'loading...':
-            <HeaderContainer>
-                <div className="quotes">
+            <HeaderContainer hidding={isHidding}>
+                <Quotes className="quotes">
                     <h1>
                         “{cote.en}”
                     </h1>
                     <p>{cote.author}</p>
 
-                </div>
-                <div className="image" onClick={()=>getQuotes(setCote)}>
+                </Quotes>
+                <Image className="image" onClick={()=>getQuotes(setCote)}>
                     <img src={refreshImg} alt="refresh icon"/>
-                </div>
+                </Image>
             </HeaderContainer>
 
     )
