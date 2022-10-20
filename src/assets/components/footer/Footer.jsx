@@ -8,13 +8,13 @@ export function Footer (){
 
     return(
         <FooterStiled background={backGround}>
-            <div>
+            <div className="container1">
                 <TimeInfo textColor={textColor}><h2>Current timezone</h2><p>{timeStatus.timezone}</p></TimeInfo>
-                <TimeInfo> <h2>Day of the year</h2><p>{timeStatus.day_of_year}</p></TimeInfo>
+                <TimeInfo textColor={textColor}> <h2>Day of the year</h2><p>{timeStatus.day_of_year}</p></TimeInfo>
             </div>
-            <div>
-                <TimeInfo><h2>Day of the week</h2><p>{timeStatus.day_of_week}</p></TimeInfo>
-                <TimeInfo><h2>Week number</h2><p>{timeStatus.week_number}</p></TimeInfo>
+            <div className="container2">
+                <TimeInfo textColor={textColor}><h2>Day of the week</h2><p>{timeStatus.day_of_week}</p></TimeInfo>
+                <TimeInfo textColor={textColor}><h2>Week number</h2><p>{timeStatus.week_number}</p></TimeInfo>
             </div>
         </FooterStiled>
     )
