@@ -26,6 +26,7 @@ export const AppStyle = styled.div`
   @media screen and (min-width: 1024px) {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), ${props => (props.backGround ? `url(${dayTimeDesk})` : `url(${nightTimeDesk})`)} no-repeat center;
     background-size: cover;
+    height: 100vh;
   }
 
 `
