@@ -1,14 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
+import moon from "../images/desktop/icon-moon.svg"
 
 
 const initialState ={
     greetings:"",
-    timeIcon: "",
+    timeIcon: moon,
     background:false,
     backgroundColor:false,
     textColor:false,
     hour:"",
     worldTime:"",
+    isHidden:false,
 }
 
 const counterSlice = createSlice({
@@ -37,10 +39,13 @@ const counterSlice = createSlice({
         getTextColor: (state,action)=>{
             state.textColor = action.payload
         },
+        getIsHidden: (state,action)=>{
+            state.isHidden = action.payload
+        },
     }
 })
 
 export const { getTimeIcon, getGreetings, getBackground, getHour, getTimeBase,
-    getBackgroundColor, getTextColor} = counterSlice.actions;
+    getBackgroundColor, getTextColor, getIsHidden} = counterSlice.actions;
 
 export default counterSlice.reducer;
