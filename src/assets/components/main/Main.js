@@ -7,19 +7,20 @@ import {
     getBackground,
     getBackgroundColor,
     getGreetings,
-    getHour, getTextColor,
+    getHour, getIsHidden, getTextColor,
     getTimeBase,
     getTimeIcon
 } from "../../redux/counterSlice";
 import {format} from "date-fns";
 import {utcToZonedTime} from "date-fns-tz";
-import {MainStiled} from "./mainStiled";
+import {Button, Clock, ClockGreeting, ClockTime, MainStiled} from "./mainStiled";
 import {Footer} from "../footer/Footer";
 
 
 export function Main() {
     // Redux
     const timeStatus = useSelector((state)=> state.date)
+    const isHidden = useSelector((state)=> state.date.isHidden)
     const dispatch = useDispatch();
     // Hooks
     const [ip, setIp] = useState([])
@@ -75,34 +76,37 @@ export function Main() {
     const click = ()=>{
         if (!footer){
             setFooter(true)
+            dispatch(getIsHidden(true))
             setButton({name: "LESS",
                 img: <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><circle fill="#303030" cx="20" cy="20" r="20"/><path stroke="#FFF" strokeWidth="2" d="M14 23l6-6 6 6"/></g></svg>})
         }else{
             setFooter(false)
+            dispatch(getIsHidden(false))
             setButton({name: "MORE",
                 img: <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><circle fill="#303030" cx="20" cy="20" r="20"/><path stroke="#FFF" strokeWidth="2" fill="none" d="m14 20l6 6 6 -6"/></g></svg>})
         }}
 
     return(
         <>
-            <MainStiled>
-                <div className="clock">
+            <MainStiled position = {isHidden}>
+                <Clock>
 
-                    <div className="clock__greeting">
+                    <ClockGreeting>
                         <img src={timeStatus.timeIcon} alt=""/>
                         <h1>{timeStatus.greetings}, <span>it's currently</span></h1>
-                    </div>
+                    </ClockGreeting>
 
-                    <div className="clock__time">
+                    <ClockTime>
                         <h2>{timeStatus.hour}</h2>
                         <h3>in <span>{`${ip.state}, ${ip.country_code}`}</span></h3>
-                    </div>
+                    </ClockTime>
 
-                </div>
-                <div className="button">
-                    <button onClick={click}> <p>{button.name}</p>{button.img}
+                </Clock>
+                <Button>
+                    <button onClick={click}>
+                        <p>{button.name}</p>{button.img}
                     </button>
-                </div>
+                </Button>
             </MainStiled>
             {footer && <Footer/>}
         </>
