@@ -1,8 +1,6 @@
-Under Construct :construction:
-
 # Clock app
 
-![Design preview for the Clock app coding challenge](../preview.jpg)
+![Design preview for the Clock app coding challenge](./public/clock.jpg)
 
 ## Welcome! 👋
 
@@ -63,19 +61,21 @@ This is a project where I built a clock app that changes images according to tim
 
 #### :man_technologist:Tecnologies:
 
-[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/) 
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 
-[![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/) 
+[![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/)
 
 [![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 #### :books: Librarys
 
-* [![React](https://img.shields.io/badge/-Date%20FNS-blue)](https://date-fns.org/)
+* [![DATE Fns](https://img.shields.io/badge/-DATE%20FNS-blue)](https://date-fns.org/)
+* [![AXIOS](https://img.shields.io/badge/-AXIOS-blue)](https://axios-http.com/ptbr/docs/intro)
+* [![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
 
 #### :desktop_computer: Apis:
 
-* [![React](https://img.shields.io/badge/API-IP%20Geolocation-yellow)](https://programming-quotes-api.herokuapp.com/)
+* [![React](https://img.shields.io/badge/API-IP%20Geolocation-yellow)](https://ipbase.com/)
 * [![React](https://img.shields.io/badge/API-Programming%20Quotes-yellow)](https://programming-quotes-api.herokuapp.com/)
 * [![React](https://img.shields.io/badge/API-World%20Time-yellow)](http://worldtimeapi.org/)
 
@@ -83,13 +83,78 @@ This is a project where I built a clock app that changes images according to tim
 
 ## :man_technologist: What I learned <a name="what-i-learned"></a>
 
+Com o desenvolvimento desse projeto eu pude aprender e melhorar os meus conhecimentos em:
+
+- Styled Components
+- Consumo de apis com Axios
+- redux
+- date-fns
 
 
+- ## Consumir apis atravez do axios:
+
+````javascript
+export function getGeolocation(ip) {
+  axios.get(api.ipGeolocation.curl  + ip, {
+    headers: {
+      'apikey': api.ipGeolocation.key
+    }}).then(response => {
+    console.log(response)
+  }).catch(error => console.log(error))
+}
+````
+
+- ## Usar o Redux para centralizar as informações
+
+````javascript
+
+const initialState ={
+    greetings:"",
+    timeIcon: moon,
+    background:false,
+    backgroundColor:false,
+    textColor:false,
+    hour:"",
+    worldTime:"",
+    isHidden:false,
+}
+
+const counterSlice = createSlice({
+  name: 'date',
+  initialState,
+  reducers:{
+    getGreetings: (state,action)=>{
+      state.greetings = action.payload
+    },
+    getBackground: (state, action)=>{
+      state.background = action.payload
+    },
+
+    getTimeIcon: (state,action)=>{
+      state.timeIcon = action.payload
+    },
+    getHour: (state,action)=>{
+      state.hour = action.payload
+    },
+    getTimeBase: (state,action)=>{
+      state.worldTime = action.payload
+    },
+    getBackgroundColor: (state,action)=>{
+      state.backgroundColor = action.payload
+    },
+    getTextColor: (state,action)=>{
+      state.textColor = action.payload
+    },
+    getIsHidden: (state,action)=>{
+      state.isHidden = action.payload
+    },
+  }
+})
+
+````
 [:arrow_up:](#table-of-contents)
 
 ## :infinity: Continued development <a name="continued-development"></a>
-
-
 
 [:arrow_up:](#table-of-contents)
 
