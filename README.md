@@ -83,15 +83,15 @@ This is a project where I built a clock app that changes images according to tim
 
 ## :man_technologist: What I learned <a name="what-i-learned"></a>
 
-Com o desenvolvimento desse projeto eu pude aprender e melhorar os meus conhecimentos em:
+With the development of this I was able to learn and improve my knowledge in:
 
 - Styled Components
-- Consumo de apis com Axios
+- apply API with Axios
 - redux
 - date-fns
 
 
-- ## Consumir apis atravez do axios:
+- ## apply API with Axios:
 
 ````javascript
 export function getGeolocation(ip) {
@@ -104,7 +104,7 @@ export function getGeolocation(ip) {
 }
 ````
 
-- ## Usar o Redux para centralizar as informações
+- ## Use Redux to centralize information
 
 ````javascript
 
