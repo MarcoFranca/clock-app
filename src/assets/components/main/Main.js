@@ -8,7 +8,6 @@ import {
     getBackgroundColor,
     getGreetings,
     getHour, getIsHidden, getTextColor,
-    getTimeBase,
     getTimeIcon
 } from "../../redux/counterSlice";
 import {format} from "date-fns";
@@ -17,28 +16,37 @@ import {Button, Clock, ClockGreeting, ClockTime, MainStiled} from "./mainStiled"
 import {Footer} from "../footer/Footer";
 
 
+
+
+
 export function Main() {
     // Redux
     const timeStatus = useSelector((state)=> state.date)
     const isHidden = useSelector((state)=> state.date.isHidden)
+    const worldTime = useSelector((state)=> state.date.worldTime)
+    const ip = useSelector((state)=> state.date.ip.IPv4)
+    const locale = useSelector((state)=> state.date.ip)
     const dispatch = useDispatch();
     // Hooks
-    const [ip, setIp] = useState([])
-    const [worldTime, setWorlodTime] = useState()
+    const [time, setTime] = useState("")
     const [footer, setFooter] = useState(false)
     const [button, setButton] = useState({name: "MORE", img: <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><circle fill="#303030" cx="20" cy="20" r="20"/><path stroke="#FFF" strokeWidth="2" fill="none" d="m14 20l6 6 6 -6"/></g></svg>
     })
 
     useEffect(() => {
-        getIp(setIp)
-    },[])
+        getIp(dispatch)
+    },[dispatch])
 
     useEffect(() => {
-        ip.length !== 0 && getWorldTime(ip.IPv4, setWorlodTime);
-    },[ip])
+        ip && getWorldTime(ip, dispatch);
+        const interval = setInterval(() => {
+            getWorldTime(ip, dispatch);
+        }, 10000);
+        return () => clearInterval(interval);
+    }, [ip,dispatch]);
 
     useEffect(() => {
-        worldTime && createAtConverted();
+        worldTime && createAtConverted(setTime)
     },[worldTime])
 
 // functions
@@ -48,8 +56,9 @@ export function Main() {
         const timeFormat = format(utcTime, "HH:mm")
         const hour =  timeFormat.split(":")[0]
         hourCase(hour)
+        console.log(time)
+        setTime(timeFormat)
         dispatch(getHour(timeFormat))
-        dispatch(getTimeBase(worldTime))
     }
 
     const hourCase = (hour) =>{
@@ -90,6 +99,7 @@ export function Main() {
         <>
             <MainStiled position = {isHidden}>
                 <Clock>
+                    { }
 
                     <ClockGreeting>
                         <img src={timeStatus.timeIcon} alt=""/>
@@ -97,8 +107,8 @@ export function Main() {
                     </ClockGreeting>
 
                     <ClockTime>
-                        <h2>{timeStatus.hour}</h2>
-                        <h3>in <span>{`${ip.state}, ${ip.country_code}`}</span></h3>
+                        {ip === ""? <p>loading...</p>:<h2>{time}</h2>}
+                        <h3>in <span>{`${locale.state}, ${locale.country_code}`}</span></h3>
                     </ClockTime>
 
                 </Clock>
@@ -111,8 +121,5 @@ export function Main() {
             {footer && <Footer/>}
         </>
 
-
-
     )
-
 }
