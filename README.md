@@ -222,6 +222,18 @@ const createAtConverted = ()=> {
 }
 ````
 
+__Use a `setInterval` to load a function from time to time__
+
+````jsx
+useEffect(() => {
+ip && getWorldTime(ip, dispatch);
+const interval = setInterval(() => {
+getWorldTime(ip, dispatch);
+}, 10000);
+return () => clearInterval(interval);
+}, [ip]);
+````
+
 [:arrow_up:](#table-of-contents)
 
 ## :infinity: Continued development <a name="continued-development"></a>
