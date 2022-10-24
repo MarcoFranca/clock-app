@@ -1,4 +1,4 @@
-# Clock app
+**# Clock app
 
 ![Design preview for the Clock app coding challenge](./public/clock.jpg)
 
@@ -69,9 +69,9 @@ This is a project where I built a clock app that changes images according to tim
 
 #### :books: Librarys
 
-* [![DATE Fns](https://img.shields.io/badge/-DATE%20FNS-blue)](https://date-fns.org/)
-* [![AXIOS](https://img.shields.io/badge/-AXIOS-blue)](https://axios-http.com/ptbr/docs/intro)
 * [![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
+* [![AXIOS](https://img.shields.io/badge/-AXIOS-blue)](https://axios-http.com/ptbr/docs/intro)
+* [![DATE Fns](https://img.shields.io/badge/-DATE%20FNS-blue)](https://date-fns.org/)
 
 #### :desktop_computer: Apis:
 
@@ -91,7 +91,7 @@ With the development of this I was able to learn and improve my knowledge in:
 - date-fns
 
 
-- ## apply API with Axios:
+__Apply API with Axios:__
 
 ````javascript
 export function getGeolocation(ip) {
@@ -104,19 +104,50 @@ export function getGeolocation(ip) {
 }
 ````
 
-- ## Use Redux to centralize information
+__Use the `useEstate` and `useEffect` hooks:__
+
+````jsx
+    const [cote, setCote] = useState()
+
+    useEffect(()=>{
+        getQuotes(setCote)
+    },[])
+
+````
+
+__Use props in styled Components__
+
+````jsx
+return(
+        <>
+            <MainStiled position = {isHidden}/>
+        </>
+)
+````
+
+````js
+export const MainStiled = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: ${props => (!props.position? "flex-end" : "center")};
+  `
+````
+
+
+__Use Redux to centralize information:__
 
 ````javascript
 
 const initialState ={
-    greetings:"",
-    timeIcon: moon,
-    background:false,
-    backgroundColor:false,
-    textColor:false,
-    hour:"",
-    worldTime:"",
-    isHidden:false,
+  greetings:"",
+  timeIcon: moon,
+  background:false,
+  backgroundColor:false,
+  textColor:false,
+  hour:"",
+  worldTime:"",
+  isHidden:false,
 }
 
 const counterSlice = createSlice({
@@ -150,8 +181,47 @@ const counterSlice = createSlice({
     },
   }
 })
+````
+
+__Use Redux's `useSelector` hook, to capture the information:__
+
+````jsx
+    const timeStatus = useSelector((state)=> state.date.worldTime)
+    const backGround = useSelector((state)=> state.date.backgroundColor)
+
+return(
+        <div className="container1">
+          <TimeInfo textColor={textColor}><h2>Current timezone</h2><p>{timeStatus.timezone}</p></TimeInfo>
+          <TimeInfo textColor={textColor}> <h2>Day of the year</h2><p>{timeStatus.day_of_year}</p></TimeInfo>
+        </div>
+)
+````
+
+__`dispatch` to change values in redux:__
+
+````jsx
+ const dispatch = useDispatch();
+const hourCase = (hour) =>{
+        if (hour > 5 && hour < 12){
+            dispatch(getGreetings("Good morning"))
+            dispatch(getTimeIcon(sun))
+            dispatch(getBackground(true))
+            dispatch(getBackgroundColor(true))
+            dispatch(getTextColor(true))
+        }
+}
 
 ````
+
+__Use `utcToZonedTime` from `Date-Fns` to receive time in utc and `format` to format Time received from API__  
+
+````jsx
+const createAtConverted = ()=> {
+  const utcTime = utcToZonedTime(worldTime.utc_datetime, worldTime.timezone)
+  const timeFormat = format(utcTime, "HH:mm")
+}
+````
+
 [:arrow_up:](#table-of-contents)
 
 ## :infinity: Continued development <a name="continued-development"></a>
@@ -449,4 +519,4 @@ DELETE</span> <b>/Users/{id}</b> - Delete a user by id 🔒</div>
 
 ## Acknowledgments
 
-**Return to Top**[:arrow_up:](#table-of-contents)
+**Return to Top**[:arrow_up:](#table-of-contents)**
