@@ -3,6 +3,7 @@ import moon from "../images/desktop/icon-moon.svg"
 
 
 const initialState ={
+    ip: "",
     greetings:"",
     timeIcon: moon,
     background:false,
@@ -17,6 +18,9 @@ const counterSlice = createSlice({
     name: 'date',
     initialState,
     reducers:{
+        getUserIp: (state,action)=>{
+            state.ip = action.payload
+        },
         getGreetings: (state,action)=>{
             state.greetings = action.payload
         },
@@ -46,6 +50,6 @@ const counterSlice = createSlice({
 })
 
 export const { getTimeIcon, getGreetings, getBackground, getHour, getTimeBase,
-    getBackgroundColor, getTextColor, getIsHidden} = counterSlice.actions;
+    getBackgroundColor, getTextColor, getIsHidden, getUserIp} = counterSlice.actions;
 
 export default counterSlice.reducer;
