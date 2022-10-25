@@ -1,4 +1,4 @@
-**# Clock app
+# Clock app
 
 ![Design preview for the Clock app coding challenge](./public/clock.jpg)
 
