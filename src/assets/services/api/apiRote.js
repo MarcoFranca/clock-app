@@ -5,7 +5,6 @@ import {getTimeBase, getUserIp} from "../../redux/counterSlice";
 export const getIp = (dispatch) => {
     axios.get(api.geolocationDb.curl)
         .then(res => {
-            console.log(res.data)
             dispatch(getUserIp(res.data))
         })
         .catch(error => console.log(error))
@@ -27,14 +26,12 @@ export function getQuotes(setState) {
         }})
         .then(response => {
             setState(response.data)
-            console.log(response.data)
         }).catch(error => console.log(error))
 }
 
 export function getWorldTime(ip, dispatch) {
     axios.get(api.worldTime.curlIp + ip).then(response => {
 
-        console.log(response.data)
         dispatch(getTimeBase(response.data))
     }).catch(error => console.log(error))
 }

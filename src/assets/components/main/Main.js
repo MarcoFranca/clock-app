@@ -108,7 +108,7 @@ export function Main() {
 
                     <ClockTime>
                         {ip === ""? <p>loading...</p>:<h2>{time}</h2>}
-                        <h3>in <span>{`${locale.state}, ${locale.country_code}`}</span></h3>
+                        <h3>in <span>{locale.state === null?`,  ${locale.country_name}`:`${locale.state}, ${locale.country_code}`}</span></h3>
                     </ClockTime>
 
                 </Clock>
